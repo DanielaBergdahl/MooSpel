@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MooGame
 {
-	class MainClass
+	class Program
 	{
 
 		public static void Main(string[] args)
