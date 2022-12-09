@@ -25,15 +25,15 @@ namespace MooGame
 				string guessInput = Console.ReadLine();
 				
 				int numberOfGuesses = 1;
-				string bbcc = CheckIfBullsOrCows(goalDigits, guessInput); // EA: Det användaren gissat läggs in som argument i metoden.
-				Console.WriteLine(bbcc + "\n");
-				while (bbcc != "BBBB,")
+				string resultOfGuesses = CheckIfBullsOrCows(goalDigits, guessInput); // EA: Det användaren gissat läggs in som argument i metoden.
+				Console.WriteLine(resultOfGuesses + "\n");
+				while (resultOfGuesses != "BBBB,")
 				{
 					numberOfGuesses++;
 					guessInput = Console.ReadLine();
 					Console.WriteLine(guessInput + "\n"); // EA : Kan nog tas bort, den upprepar bara samma sak som användaren just skrivit.
-					bbcc = CheckIfBullsOrCows(goalDigits, guessInput);
-					Console.WriteLine(bbcc + "\n");
+					resultOfGuesses = CheckIfBullsOrCows(goalDigits, guessInput);
+					Console.WriteLine(resultOfGuesses + "\n");
 				}
 				StreamWriter output = new StreamWriter("result.txt", append: true);
 				output.WriteLine(userName + "#&#" + numberOfGuesses);
@@ -65,15 +65,15 @@ namespace MooGame
 			return goalDigits;
 		}
 
-		static string CheckIfBullsOrCows(string goal, string guess) // Namn: Rätt namn?
+		static string CheckIfBullsOrCows(string goalNumber, string guessedNumber) // Namn: Rätt namn?
 		{
 			int cows = 0, bulls = 0; // Egen anteckning: Kan ta bort värdet 0, det är de redan by default.
-			guess += "    ";     // if player entered less than 4 chars //EA: Kommentaren är kanske överflödig. Behövs koden alls?
+			guessedNumber += "    ";     // if player entered less than 4 chars //EA: Kommentaren är kanske överflödig. Behövs koden alls?
 			for (int i = 0; i < 4; i++) // EA: Tror det går att ta bort den här for:en. 
 			{
 				for (int j = 0; j < 4; j++)  // EA: Går det att byta ut mot foreach? 
                 {
-					if (goal[i] == guess[j])
+					if (goalNumber[i] == guessedNumber[j])
 					{
 						if (i == j)
 						{
