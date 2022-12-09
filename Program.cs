@@ -12,31 +12,31 @@ namespace MooGame
 
 			bool gameIsOn = true;
 			Console.WriteLine("Enter your user name:\n");
-			string name = Console.ReadLine();
+			string userName = Console.ReadLine();
 
 			while (gameIsOn)
 			{
-				string goal = makeGoal();
+				string goalDigits = MakeGoalDigits();
 
 				
 				Console.WriteLine("New game:\n");
 				//comment out or remove next line to play real games!
-				Console.WriteLine("For practice, number is: " + goal + "\n");
+				Console.WriteLine("For practice, number is: " + goalDigits + "\n");
 				string guessInput = Console.ReadLine();
 				
 				int numberOfGuesses = 1;
-				string bbcc = CheckIfBullsOrCows(goal, guessInput);
+				string bbcc = CheckIfBullsOrCows(goalDigits, guessInput); // EA: Det användaren gissat läggs in som argument i metoden.
 				Console.WriteLine(bbcc + "\n");
 				while (bbcc != "BBBB,")
 				{
 					numberOfGuesses++;
 					guessInput = Console.ReadLine();
-					Console.WriteLine(guessInput + "\n");
-					bbcc = CheckIfBullsOrCows(goal, guessInput);
+					Console.WriteLine(guessInput + "\n"); // EA : Kan nog tas bort, den upprepar bara samma sak som användaren just skrivit.
+					bbcc = CheckIfBullsOrCows(goalDigits, guessInput);
 					Console.WriteLine(bbcc + "\n");
 				}
 				StreamWriter output = new StreamWriter("result.txt", append: true);
-				output.WriteLine(name + "#&#" + numberOfGuesses);
+				output.WriteLine(userName + "#&#" + numberOfGuesses);
 				output.Close();
 				showTopList();
 				Console.WriteLine("Correct, it took " + numberOfGuesses + " guesses\nContinue?");
@@ -47,32 +47,32 @@ namespace MooGame
 				}
 			}
 		}
-		static string makeGoal()
+		static string MakeGoalDigits()
 		{
-			Random randomGenerator = new Random();
-			string goal = "";
+			Random randomDigitGenerator = new Random();
+			string goalDigits = "";
 			for (int i = 0; i < 4; i++)
 			{
-				int random = randomGenerator.Next(10);
-				string randomDigit = "" + random;
-				while (goal.Contains(randomDigit))
+				int randomIntDigit = randomDigitGenerator.Next(10); //Next method returns a random digit
+				string randomStringDigit = "" + randomIntDigit; // vad är "" till för?
+				while (goalDigits.Contains(randomStringDigit)) // är false första gången. Kollar om siffra redan finns.
 				{
-					random = randomGenerator.Next(10);
-					randomDigit = "" + random;
+					randomIntDigit = randomDigitGenerator.Next(10);
+					randomStringDigit = "" + randomIntDigit;
 				}
-				goal = goal + randomDigit;
+				goalDigits = goalDigits + randomStringDigit; //Här läggs det till en siffra till goalDigits för varje gång loopen körs
 			}
-			return goal;
+			return goalDigits;
 		}
 
 		static string CheckIfBullsOrCows(string goal, string guess) // Namn: Rätt namn?
 		{
-			int cows = 0, bulls = 0;
-			guess += "    ";     // if player entered less than 4 chars
-			for (int i = 0; i < 4; i++)
+			int cows = 0, bulls = 0; // Egen anteckning: Kan ta bort värdet 0, det är de redan by default.
+			guess += "    ";     // if player entered less than 4 chars //EA: Kommentaren är kanske överflödig. Behövs koden alls?
+			for (int i = 0; i < 4; i++) // EA: Tror det går att ta bort den här for:en. 
 			{
-				for (int j = 0; j < 4; j++)
-				{
+				for (int j = 0; j < 4; j++)  // EA: Går det att byta ut mot foreach? 
+                {
 					if (goal[i] == guess[j])
 					{
 						if (i == j)
