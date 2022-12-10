@@ -67,7 +67,7 @@ namespace MooGame
 
 		static string CheckIfBullsOrCows(string goalNumber, string guessedNumber) // Namn: Rätt namn?
 		{
-			int cows = 0, bulls = 0; // Egen anteckning: Kan ta bort värdet 0, det är de redan by default.
+			int amountOfCows = 0, amountOfBulls = 0; // Egen anteckning: Kan ta bort värdet 0, det är de redan by default.
 			guessedNumber += "    ";     // if player entered less than 4 chars //EA: Kommentaren är kanske överflödig. Behövs koden alls?
 			for (int i = 0; i < 4; i++) // EA: Tror det går att ta bort den här for:en. 
 			{
@@ -77,16 +77,16 @@ namespace MooGame
 					{
 						if (i == j)
 						{
-							bulls++;
+							amountOfBulls++;
 						}
 						else
 						{
-							cows++;
+							amountOfCows++;
 						}
 					}
 				}
 			}
-			return "BBBB".Substring(0, bulls) + "," + "CCCC".Substring(0, cows);
+			return "BBBB".Substring(0, amountOfBulls) + "," + "CCCC".Substring(0, amountOfCows);
 		}
 
 
