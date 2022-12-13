@@ -22,26 +22,28 @@ namespace MooGame
 				Console.WriteLine("New game:\n");
 				//comment out or remove next line to play real games!
 				Console.WriteLine("For practice, number is: " + goalDigits + "\n");
-				string guessInput = Console.ReadLine();
+				string userGuess = Console.ReadLine();
 				
 				int numberOfGuesses = 1;
-				string resultOfGuesses = CheckIfBullsOrCows(goalDigits, guessInput); // EA: Det användaren gissat läggs in som argument i metoden.
+				string resultOfGuesses = CheckIfBullsOrCows(goalDigits, userGuess); // EA: Det användaren gissat läggs in som argument i metoden.
 				Console.WriteLine(resultOfGuesses + "\n");
 				while (resultOfGuesses != "BBBB,")
 				{
 					numberOfGuesses++;
-					guessInput = Console.ReadLine();
-					Console.WriteLine(guessInput + "\n"); // EA : Kan nog tas bort, den upprepar bara samma sak som användaren just skrivit.
-					resultOfGuesses = CheckIfBullsOrCows(goalDigits, guessInput);
+					userGuess = Console.ReadLine();
+					Console.WriteLine(userGuess + "\n"); // EA : Kan nog tas bort, den upprepar bara samma sak som användaren just skrivit.
+					resultOfGuesses = CheckIfBullsOrCows(goalDigits, userGuess);
 					Console.WriteLine(resultOfGuesses + "\n");
 				}
-				StreamWriter output = new StreamWriter("result.txt", append: true);
-				output.WriteLine(userName + "#&#" + numberOfGuesses);
-				output.Close();
+
+				StreamWriter scoreStatisticsOutput = new StreamWriter("result.txt", append: true);
+				scoreStatisticsOutput.WriteLine(userName + "#&#" + numberOfGuesses);
+				scoreStatisticsOutput.Close();
 				showTopList();
 				Console.WriteLine("Correct, it took " + numberOfGuesses + " guesses\nContinue?");
-				string answer = Console.ReadLine();
-				if (answer != null && answer != "" && answer.Substring(0, 1) == "n")
+				string usersAnswer = Console.ReadLine();
+				
+				if (usersAnswer != null && usersAnswer != "" && usersAnswer.Substring(0, 1) == "n")
 				{
 					gameIsOn = false;
 				}
@@ -90,50 +92,54 @@ namespace MooGame
 		}
 
 
-		static void showTopList()
+		static void showTopList() // EA:Ska nog vara en Make- OCH PrintTopList, dvs flera metoder.
 		{
-			StreamReader input = new StreamReader("result.txt");
-			List<PlayerData> results = new List<PlayerData>();
-			string line;
-			while ((line = input.ReadLine()) != null)
+
+            
+            StreamReader scoreStatisticsInput = new StreamReader("result.txt");
+            List<Player> players = new List<Player>();
+            string nameAndScoreLine;
+			while ((nameAndScoreLine = scoreStatisticsInput.ReadLine()) != null)
 			{
-				string[] nameAndScore = line.Split(new string[] { "#&#" }, StringSplitOptions.None);
-				string name = nameAndScore[0];
-				int guesses = Convert.ToInt32(nameAndScore[1]);
-				PlayerData pd = new PlayerData(name, guesses);
-				int pos = results.IndexOf(pd);
-				if (pos < 0)
+				string[] allNamesAndScores = nameAndScoreLine.Split(new string[] { "#&#" }, StringSplitOptions.None); // EA:Förstår ej StringSplitOptions.None
+				string nameOfPlayer = allNamesAndScores[0];
+				int playerTotalGuesses = Convert.ToInt32(allNamesAndScores[1]);
+
+
+				Player player = new Player(nameOfPlayer, playerTotalGuesses);
+				int playerPosition = players.IndexOf(player); // EA: Hur kan det bli -1? Det blir det i alla fall.
+                if (playerPosition < 0)  
 				{
-					results.Add(pd);
+					players.Add(player);
 				}
 				else
 				{
-					results[pos].Update(guesses);
+					players[playerPosition].Update(playerTotalGuesses);
 				}
 				
 				
 			}
-			results.Sort((p1, p2) => p1.Average().CompareTo(p2.Average()));
+			players.Sort((player1, player2) => player1.Average().CompareTo(player2.Average()));
 			Console.WriteLine("Player   games average");
-			foreach (PlayerData p in results)
+			foreach (Player p in players)
 			{
 				Console.WriteLine(string.Format("{0,-9}{1,5:D}{2,9:F2}", p.Name, p.NGames, p.Average()));
 			}
-			input.Close();
+			scoreStatisticsInput.Close();
 		}
 	}
 
-	class PlayerData
+	class Player
 	{
 		public string Name { get; private set; }
-        public int NGames { get; private set; }
+        public int NGames { get; private set; } // EA: Vad är det till?
 		int totalGuess;
 		
 
-		public PlayerData(string name, int guesses)
+		public Player(string name, int guesses)
 		{
 			this.Name = name;
-			NGames = 1;
+			NGames = 1; //EA: Varför är den satt till 1?
 			totalGuess = guesses;
 		}
 
@@ -151,7 +157,7 @@ namespace MooGame
 		
 	    public override bool Equals(Object p)
 		{
-			return Name.Equals(((PlayerData)p).Name);
+			return Name.Equals(((Player)p).Name);
 		}
 
 		
