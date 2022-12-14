@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MooSpel", "MooSpel.csproj", "{4EF6E69F-9C91-423B-9979-949D0DBD7748}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MooSpel", "MooSpel.csproj", "{4EF6E69F-9C91-423B-9979-949D0DBD7748}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MooSpel.tests", "..\MooSpel.tests\MooSpel.tests.csproj", "{D2862FD0-FD18-4D90-82E0-C2522627327E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4EF6E69F-9C91-423B-9979-949D0DBD7748}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EF6E69F-9C91-423B-9979-949D0DBD7748}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EF6E69F-9C91-423B-9979-949D0DBD7748}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2862FD0-FD18-4D90-82E0-C2522627327E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2862FD0-FD18-4D90-82E0-C2522627327E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2862FD0-FD18-4D90-82E0-C2522627327E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2862FD0-FD18-4D90-82E0-C2522627327E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

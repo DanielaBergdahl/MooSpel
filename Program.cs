@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MooGame
 {
-	class Program
+	public class Program
 	{
 
 		public static void Main(string[] args)
@@ -25,14 +25,14 @@ namespace MooGame
 				string userGuess = Console.ReadLine();
 				
 				int numberOfGuesses = 1;
-				string resultOfGuesses = CheckIfBullsOrCows(goalDigits, userGuess); // EA: Det användaren gissat läggs in som argument i metoden.
+				string resultOfGuesses = ProgramHelpers.CheckIfBullsOrCows(goalDigits, userGuess); // EA: Det användaren gissat läggs in som argument i metoden.
 				Console.WriteLine(resultOfGuesses + "\n");
 				while (resultOfGuesses != "BBBB,")
 				{
 					numberOfGuesses++;
 					userGuess = Console.ReadLine();
 					Console.WriteLine(userGuess + "\n"); // EA : Kan nog tas bort, den upprepar bara samma sak som användaren just skrivit.
-					resultOfGuesses = CheckIfBullsOrCows(goalDigits, userGuess);
+					resultOfGuesses = ProgramHelpers.CheckIfBullsOrCows(goalDigits, userGuess);
 					Console.WriteLine(resultOfGuesses + "\n");
 				}
 
@@ -67,31 +67,6 @@ namespace MooGame
 			return goalDigits;
 		}
 
-		static string CheckIfBullsOrCows(string goalNumber, string guessedNumber) // Namn: Rätt namn?
-		{
-			int amountOfCows = 0, amountOfBulls = 0; // Egen anteckning: Kan ta bort värdet 0, det är de redan by default.
-			guessedNumber += "    ";     // if player entered less than 4 chars //EA: Kommentaren är kanske överflödig. Behövs koden alls?
-			for (int i = 0; i < 4; i++) // EA: Tror det går att ta bort den här for:en. 
-			{
-				for (int j = 0; j < 4; j++)  // EA: Går det att byta ut mot foreach? 
-                {
-					if (goalNumber[i] == guessedNumber[j])
-					{
-						if (i == j)
-						{
-							amountOfBulls++;
-						}
-						else
-						{
-							amountOfCows++;
-						}
-					}
-				}
-			}
-			return "BBBB".Substring(0, amountOfBulls) + "," + "CCCC".Substring(0, amountOfCows);
-		}
-
-
 		static void showTopList() // EA:Ska nog vara en Make- OCH PrintTopList, dvs flera metoder.
 		{
 
@@ -119,8 +94,8 @@ namespace MooGame
 				
 				
 			}
-			players.Sort((player1, player2) => player1.Average().CompareTo(player2.Average()));
-			Console.WriteLine("Player   games average");
+			players.Sort((player1, p2) => player1.Average().CompareTo(p2.Average())); //EA: Här skapas väl en lista?..
+			Console.WriteLine("Player   games average");											//EA: Som skrivs ut här.
 			foreach (Player p in players)
 			{
 				Console.WriteLine(string.Format("{0,-9}{1,5:D}{2,9:F2}", p.Name, p.NGames, p.Average()));
