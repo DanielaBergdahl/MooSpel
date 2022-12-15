@@ -6,16 +6,15 @@
         {
             IUI ui = new IO();
             Game game = new Game();
-                //Calculator calculator = new Calculator();
-                //CalculatorController controller = new CalculatorController(calculator, ui); // De två första ges till controller
-                //controller.Run();                                                           // Controller kör allt
+            GameController controller = new GameController(game, ui);
+            controller.Run();
         }
         
         public static void ToMove() //public static void Main(string[] args)
         {
 
             bool gameIsOn = true;
-            Console.WriteLine("Enter your user name:\n");
+            //Console.WriteLine("Enter your user name:\n");
             string userName = Console.ReadLine();
 
             while (gameIsOn)
@@ -47,10 +46,10 @@
                 Console.WriteLine("Correct, it took " + numberOfGuesses + " guesses\nContinue?");
                 string usersAnswer = Console.ReadLine();
 
-                if (usersAnswer != null && usersAnswer != "" && usersAnswer.Substring(0, 1) == "n")
-                {
-                    gameIsOn = false;
-                }
+                //if (usersAnswer != null && usersAnswer != "" && usersAnswer.Substring(0, 1) == "n") // Flyttat till Controller Run method.
+                //{
+                //    gameIsOn = false;
+                //}
             }
         }
         static string MakeGoalDigits()
