@@ -1,6 +1,6 @@
-﻿namespace MooGame
+﻿namespace MooSpel
 {
-    public static class ProgramHelpers
+    internal class Game
     {
 
         public static string CheckIfBullsOrCows(string goalNumber, string guessedNumber) // Namn: Rätt namn?

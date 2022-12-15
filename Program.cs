@@ -1,14 +1,17 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-
-
-namespace MooGame
+﻿namespace MooSpel
 {
     public class Program
     {
-
-        public static void Main(string[] args)
+        static void Main(string[] args)
+        {
+            IUI ui = new IO();
+            Game game = new Game();
+                //Calculator calculator = new Calculator();
+                //CalculatorController controller = new CalculatorController(calculator, ui); // De två första ges till controller
+                //controller.Run();                                                           // Controller kör allt
+        }
+        
+        public static void ToMove() //public static void Main(string[] args)
         {
 
             bool gameIsOn = true;
@@ -26,14 +29,14 @@ namespace MooGame
                 string userGuess = Console.ReadLine();
 
                 int numberOfGuesses = 1;
-                string resultOfGuesses = ProgramHelpers.CheckIfBullsOrCows(goalDigits, userGuess); // EA: Det användaren gissat läggs in som argument i metoden.
+                string resultOfGuesses = Game.CheckIfBullsOrCows(goalDigits, userGuess); // EA: Det användaren gissat läggs in som argument i metoden.
                 Console.WriteLine(resultOfGuesses + "\n");
                 while (resultOfGuesses != "BBBB,")
                 {
                     numberOfGuesses++;
                     userGuess = Console.ReadLine();
                     Console.WriteLine(userGuess + "\n"); // EA : Kan nog tas bort, den upprepar bara samma sak som användaren just skrivit.
-                    resultOfGuesses = ProgramHelpers.CheckIfBullsOrCows(goalDigits, userGuess);
+                    resultOfGuesses = Game.CheckIfBullsOrCows(goalDigits, userGuess);
                     Console.WriteLine(resultOfGuesses + "\n");
                 }
 
