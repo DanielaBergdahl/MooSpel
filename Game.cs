@@ -44,11 +44,11 @@ namespace MooSpel
                 numberOfGuesses++;
                 userGuess = Console.ReadLine(); // TODO - Gör som med UserName!
                 Console.WriteLine(userGuess + "\n"); // EA : Kan nog tas bort, den upprepar bara samma sak som användaren just skrivit.
-                resultOfGuesses = Game.CheckIfBullsOrCows(GoalDigits, userGuess);
+                resultOfGuesses = CheckIfBullsOrCows(GoalDigits, userGuess);
                 Console.WriteLine(resultOfGuesses + "\n");
             }
         }
-        public static string CheckIfBullsOrCows(string goalNumber, string guessedNumber) // Namn: Rätt namn?
+        public string CheckIfBullsOrCows(string goalNumber, string guessedNumber) // Namn: Rätt namn?
         {
             int amountOfCows = 0, amountOfBulls = 0; // Egen anteckning: Kan ta bort värdet 0, det är de redan by default.
             guessedNumber += "    ";     // if player entered less than 4 chars //EA: Kommentaren är kanske överflödig. Behövs koden alls?

@@ -18,7 +18,14 @@
             do
             {
                 SetUpNewGame();
-                userInput = _ui.GetString().Trim();
+                string resultOfGuesses;
+                do
+                {
+                    userInput = _ui.GetString().Trim();
+                    resultOfGuesses = _game.CheckIfBullsOrCows(_game.GoalDigits, userInput);
+                    _ui.PutString(resultOfGuesses);
+                } while (resultOfGuesses != "BBBB," && userInput.ToLower() != "n");
+
             } while (userInput.ToLower() != "n");
             
         }
