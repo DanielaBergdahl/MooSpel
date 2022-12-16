@@ -14,29 +14,27 @@
         public void Run()
         {
             AskUserName();
-            SetUpNewGame();
-
-            //Själva gissningsfasen börjar...
-            string input;
-            do { 
-                    DisplayGameState();
-                    input = _ui.GetString().Trim();
-                    //Handle(input);
-            }   while (input.ToLower() != "n");
+            string userInput;
+            do
+            {
+                SetUpNewGame();
+                userInput = _ui.GetString().Trim();
+            } while (userInput.ToLower() != "n");
+            
         }
 
       
 
         public void AskUserName()
         {
-            _ui.PutString(_game.GetStartMessage()); // sker bara en gång Set up fas
+            _ui.PutString(_game.AskForUserName()); // sker bara en gång Set up fas
             _game.UserName = _ui.GetString().Trim();// Sker bar en gång Set up fas
         }
         private void SetUpNewGame()
         {
+            _game.MakeGoalDigits();
             _ui.PutString(_game.GetStartNewGameMessage());
         }
-
 
         private void Handle(string input)
         {
@@ -51,7 +49,6 @@
 
         private void DisplayGameState()
         {
-            
         }
     }
 }

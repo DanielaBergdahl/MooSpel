@@ -6,14 +6,18 @@ namespace MooSpel
     {
 
         public string UserName { get; set; }
-        public string GoalDigits { get; set; } = "";
-        public string GetStartMessage()
+        public string GoalDigits { get; set; }
+        public string AskForUserName()
         {
             return "Enter your user name:\n";
         }
-
+        public string GetStartNewGameMessage()
+        {
+            return "New game:\n\nFor practice, number is: " + GoalDigits + "\n";
+        }
         public void MakeGoalDigits()
         {
+            GoalDigits = "";
             Random randomDigitGenerator = new Random();
             for (int i = 0; i < 4; i++)
             {
@@ -28,14 +32,22 @@ namespace MooSpel
             }
         }
 
-        public string GetStartNewGameMessage()
+        
+
+        public void MakeGuess(string userGuess)
         {
-            MakeGoalDigits();
-            return "New game:\n\nFor practice, number is: " + GoalDigits + "\n";
+            int numberOfGuesses = 1;
+            string resultOfGuesses = CheckIfBullsOrCows(GoalDigits, userGuess); //userGuess ska vara input från användaren
+            Console.WriteLine(resultOfGuesses + "\n");
+            while (resultOfGuesses != "BBBB,")
+            {
+                numberOfGuesses++;
+                userGuess = Console.ReadLine(); // TODO - Gör som med UserName!
+                Console.WriteLine(userGuess + "\n"); // EA : Kan nog tas bort, den upprepar bara samma sak som användaren just skrivit.
+                resultOfGuesses = Game.CheckIfBullsOrCows(GoalDigits, userGuess);
+                Console.WriteLine(resultOfGuesses + "\n");
+            }
         }
-
-
-
         public static string CheckIfBullsOrCows(string goalNumber, string guessedNumber) // Namn: Rätt namn?
         {
             int amountOfCows = 0, amountOfBulls = 0; // Egen anteckning: Kan ta bort värdet 0, det är de redan by default.

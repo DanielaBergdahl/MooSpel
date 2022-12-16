@@ -34,7 +34,7 @@
         //        {
         //            numberOfGuesses++;
         //            userGuess = Console.ReadLine();
-        //            Console.WriteLine(userGuess + "\n"); // EA : Kan nog tas bort, den upprepar bara samma sak som användaren just skrivit.
+        //            Console.WriteLine(userGuess + "\n"); // EA : Den upprepar bara samma sak som användaren just skrivit.
         //            resultOfGuesses = Game.CheckIfBullsOrCows(goalDigits, userGuess);
         //            Console.WriteLine(resultOfGuesses + "\n");
         //        }
