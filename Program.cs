@@ -28,7 +28,7 @@
         //        string userGuess = Console.ReadLine();
 
         //        int numberOfGuesses = 1;
-        //        string resultOfGuesses = Game.CheckIfBullsOrCows(goalDigits, userGuess); // EA: Det användaren gissat läggs in som argument i metoden.
+        //        string resultOfGuesses = Game.CheckIfBullsOrCows(goalDigits, userGuess);
         //        Console.WriteLine(resultOfGuesses + "\n");
         //        while (resultOfGuesses != "BBBB,")
         //        {
