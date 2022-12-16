@@ -4,10 +4,13 @@ namespace MooSpel
 {
     internal class Game
     {
+
+        public string UserName { get; set; }
         public string GetStartMessage()
         {
             return "Enter your user name:\n";
         }
+
 
         public static string CheckIfBullsOrCows(string goalNumber, string guessedNumber) // Namn: Rätt namn?
         {
