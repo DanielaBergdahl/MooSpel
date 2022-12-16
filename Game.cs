@@ -1,7 +1,13 @@
-﻿namespace MooSpel
+﻿using System.Diagnostics.Metrics;
+
+namespace MooSpel
 {
     internal class Game
     {
+        public string GetStartMessage()
+        {
+            return "Enter your user name:\n";
+        }
 
         public static string CheckIfBullsOrCows(string goalNumber, string guessedNumber) // Namn: Rätt namn?
         {
