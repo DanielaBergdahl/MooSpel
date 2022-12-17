@@ -1,4 +1,6 @@
-﻿namespace MooSpel
+﻿using System.Xml.Linq;
+
+namespace MooSpel
 {
     internal class GameController
     //Skickar sakerna mellan klasserna
@@ -18,19 +20,35 @@
             do
             {
                 SetUpNewGame();
-                string resultOfGuesses;
+                string resultOfGuesses = "";
                 do
                 {
                     userInput = _ui.GetString().Trim();
-                    resultOfGuesses = _game.CheckIfBullsOrCows(_game.GoalDigits, userInput);
-                    _ui.PutString(resultOfGuesses);
+                    if (userInput != "n")
+                    {
+                        resultOfGuesses = _game.CheckIfBullsOrCows(_game.GoalDigits, userInput);
+                        _ui.PutString(resultOfGuesses);
+                    }
                 } while (resultOfGuesses != "BBBB," && userInput.ToLower() != "n");
 
+                UpdateTopList();
+                PrintTopList();
+                _ui.PutString("Continue?");
+                userInput = _ui.GetString().Trim();
             } while (userInput.ToLower() != "n");
             
         }
 
-      
+        private void UpdateTopList()
+        {
+            Console.WriteLine("Updating toplist...");
+        }
+
+        private void PrintTopList()
+        {
+            Console.WriteLine("Printing toplist...");
+        }
+
 
         public void AskUserName()
         {

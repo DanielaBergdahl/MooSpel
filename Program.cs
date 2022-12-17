@@ -101,47 +101,47 @@
             Console.WriteLine("Player   games average");                                            //EA: Som skrivs ut här.
             foreach (Player p in players)
             {
-                Console.WriteLine(string.Format("{0,-9}{1,5:D}{2,9:F2}", p.Name, p.NGames, p.Average()));
+                Console.WriteLine(string.Format("{0,-9}{1,5:D}{2,9:F2}", p.Name, p.AmountOfGames, p.Average()));
             }
             scoreStatisticsInput.Close();
         }
     }
 
-    class Player
-    {
-        public string Name { get; private set; }
-        public int NGames { get; private set; } // EA: Vad är det till?
-        int totalGuess;
+    //class OldPlayer --ANVÄNDS EJ--
+    //{
+        //public string Name { get; private set; }
+        //public int AmountOfGames { get; private set; } // EA: Ändrat namnet till AmountOfGames 
+        //int totalGuess;
 
 
-        public Player(string name, int guesses)
-        {
-            this.Name = name;
-            NGames = 1; //EA: Varför är den satt till 1?
-            totalGuess = guesses;
-        }
+        //public Player(string name, int guesses)
+        //{
+        //    this.Name = name;
+        //    AmountOfGames = 1; //EA: Varför är den satt till 1?
+        //    totalGuess = guesses;
+        //}
 
-        public void Update(int guesses)
-        {
-            totalGuess += guesses;
-            NGames++;
-        }
+    //    public void Update(int guesses)                 //Har en (1) references
+    //    {                                               //Flyttar till Player class
+    //        totalGuess += guesses;
+    //        AmountOfGames++;
+    //    }
 
-        public double Average()
-        {
-            return (double)totalGuess / NGames;
-        }
-
-
-        public override bool Equals(Object p)
-        {
-            return Name.Equals(((Player)p).Name);
-        }
+    //    public double Average()                         //Har tre references
+    //    {                                               //Flyttar till Player class
+    //        return (double)totalGuess / AmountOfGames;
+    //    }
 
 
-        public override int GetHashCode()
-        {
-            return Name.GetHashCode();
-        }
-    }
+    //    public override bool Equals(Object p)     // KAN TA BORT, har ej referenser
+    //    {
+    //        return Name.Equals(((Player)p).Name);
+    //    }
+
+
+    //    public override int GetHashCode()       // KAN TA BORT, har ej referenser
+    //    {
+    //        return Name.GetHashCode();
+    //    }
+    //}
 }
