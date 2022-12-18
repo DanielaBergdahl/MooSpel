@@ -22,7 +22,7 @@ namespace MooSpel
             string nameAndScoreLine;
             while ((nameAndScoreLine = scoreStatisticsInput.ReadLine()) != null)
             {
-                string[] allNamesAndScores = nameAndScoreLine.Split(new string[] { "#&#" }, StringSplitOptions.None); // EA:Förstår ej StringSplitOptions.None
+                string[] allNamesAndScores = nameAndScoreLine.Split(new string[] { "#&#" }, StringSplitOptions.None);
                 string nameOfPlayer = allNamesAndScores[0];
                 int playerTotalGuesses = Convert.ToInt32(allNamesAndScores[1]);
 

@@ -34,7 +34,7 @@ namespace MooSpel
 
                 _topList.Update(numberOfGuesses, _game.UserName);
                 _topList.Show();
-                _ui.PutString("Correct, it took " + numberOfGuesses + " guesses\nContinue?"); // TODO - Ändra så att en metod med numberOfGuesses i Game returnerar  "Correct it took...X guessesn\Continue?"
+                _ui.PutString("Correct, it took " + numberOfGuesses + " guesses\nContinue?");
                 userInput = _ui.GetString().Trim();
             } while (userInput.ToLower() != "n");
             
@@ -42,8 +42,8 @@ namespace MooSpel
 
         public void AskUserName()
         {
-            _ui.PutString(_game.AskForUserName()); // sker bara en gång Set up fas
-            _game.UserName = _ui.GetString().Trim();// Sker bar en gång Set up fas
+            _ui.PutString(_game.AskForUserName());
+            _game.UserName = _ui.GetString().Trim();
         }
         private void SetUpNewGame()
         {
