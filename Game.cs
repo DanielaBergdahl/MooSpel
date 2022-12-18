@@ -2,7 +2,7 @@
 
 namespace MooSpel
 {
-    internal class Game
+    public class Game
     {
         public string UserName { get; set; }
         public string GoalDigits { get; set; }
