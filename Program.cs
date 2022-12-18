@@ -6,7 +6,8 @@
         {
             IUI ui = new IO();
             Game game = new Game();
-            GameController controller = new GameController(game, ui);
+            TopList topList = new TopList();
+            GameController controller = new GameController(game, ui, topList);
             controller.Run();
         }
         
@@ -32,10 +33,10 @@
         //        Console.WriteLine(resultOfGuesses + "\n");
         //        while (resultOfGuesses != "BBBB,")
         //        {
-        //            numberOfGuesses++;
-        //            userGuess = Console.ReadLine();
+        //            numberOfGuesses++; 
+        //            userGuess = Console.ReadLine();  // KLAR
         //            Console.WriteLine(userGuess + "\n"); // EA : Den upprepar bara samma sak som användaren just skrivit.
-        //            resultOfGuesses = Game.CheckIfBullsOrCows(goalDigits, userGuess);
+        //            resultOfGuesses = Game.CheckIfBullsOrCows(goalDigits, userGuess); // KLAR
         //            Console.WriteLine(resultOfGuesses + "\n");
         //        }
 

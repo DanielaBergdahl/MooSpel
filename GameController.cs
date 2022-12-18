@@ -7,11 +7,13 @@ namespace MooSpel
     {
         private Game _game;
         private IUI _ui;
+        private ITopList _topList;
 
-        public GameController(Game game, IUI ui)
+        public GameController(Game game, IUI ui, ITopList topList)
         {
-            this._game = game;
-            this._ui = ui;
+            _game = game;
+            _ui = ui;
+            _topList = topList;
         }
         public void Run()
         {
@@ -21,34 +23,22 @@ namespace MooSpel
             {
                 SetUpNewGame();
                 string resultOfGuesses = "";
+                int numberOfGuesses = 0; 
                 do
                 {
                     userInput = _ui.GetString().Trim();
-                    if (userInput != "n")
-                    {
-                        resultOfGuesses = _game.CheckIfBullsOrCows(_game.GoalDigits, userInput);
-                        _ui.PutString(resultOfGuesses);
-                    }
-                } while (resultOfGuesses != "BBBB," && userInput.ToLower() != "n");
+                    numberOfGuesses++;
+                    resultOfGuesses = _game.CheckIfBullsOrCows(_game.GoalDigits, userInput);
+                    _ui.PutString(resultOfGuesses);
+                } while (resultOfGuesses != "BBBB,");
 
-                UpdateTopList();
-                PrintTopList();
-                _ui.PutString("Continue?");
+                _topList.Update(numberOfGuesses, _game.UserName);
+                _topList.Show();
+                _ui.PutString("Correct, it took " + numberOfGuesses + " guesses\nContinue?"); // TODO - Ändra så att en metod med numberOfGuesses i Game returnerar  "Correct it took...X guessesn\Continue?"
                 userInput = _ui.GetString().Trim();
             } while (userInput.ToLower() != "n");
             
         }
-
-        private void UpdateTopList()
-        {
-            Console.WriteLine("Updating toplist...");
-        }
-
-        private void PrintTopList()
-        {
-            Console.WriteLine("Printing toplist...");
-        }
-
 
         public void AskUserName()
         {

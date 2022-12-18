@@ -4,7 +4,6 @@ namespace MooSpel
 {
     internal class Game
     {
-
         public string UserName { get; set; }
         public string GoalDigits { get; set; }
         public string AskForUserName()
@@ -32,22 +31,22 @@ namespace MooSpel
             }
         }
 
-        
 
-        public void MakeGuess(string userGuess)
-        {
-            int numberOfGuesses = 1;
-            string resultOfGuesses = CheckIfBullsOrCows(GoalDigits, userGuess); //userGuess ska vara input från användaren
-            Console.WriteLine(resultOfGuesses + "\n");
-            while (resultOfGuesses != "BBBB,")
-            {
-                numberOfGuesses++;
-                userGuess = Console.ReadLine(); // TODO - Gör som med UserName!
-                Console.WriteLine(userGuess + "\n"); // EA : Kan nog tas bort, den upprepar bara samma sak som användaren just skrivit.
-                resultOfGuesses = CheckIfBullsOrCows(GoalDigits, userGuess);
-                Console.WriteLine(resultOfGuesses + "\n");
-            }
-        }
+        // TODO - Ändra så att en metod med numberOfGuesses i Game returnerar  "Correct it took...X guessesn\Continue?"
+        //public void MakeGuess(string userGuess)
+        //{
+        //    numberOfGuesses = 1;
+        //    string resultOfGuesses = CheckIfBullsOrCows(GoalDigits, userGuess); //userGuess ska vara input från användaren
+        //    Console.WriteLine(resultOfGuesses + "\n");
+        //    while (resultOfGuesses != "BBBB,")
+        //    {
+        //        numberOfGuesses++;
+        //        userGuess = Console.ReadLine(); // TODO - Gör som med UserName!
+        //        Console.WriteLine(userGuess + "\n"); // EA : Kan nog tas bort, den upprepar bara samma sak som användaren just skrivit.
+        //        resultOfGuesses = CheckIfBullsOrCows(GoalDigits, userGuess);
+        //        Console.WriteLine(resultOfGuesses + "\n");
+        //    }
+        //}
         public string CheckIfBullsOrCows(string goalNumber, string guessedNumber) // Namn: Rätt namn?
         {
             int amountOfCows = 0, amountOfBulls = 0; // Egen anteckning: Kan ta bort värdet 0, det är de redan by default.
