@@ -6,6 +6,9 @@ namespace MooSpel
     {
         public string UserName { get; set; }
         public string GoalDigits { get; set; }
+        public int NumberOfGuesses { get; set; }
+        public string ResultOfGuesses { get; set; }
+
         public string AskForUserName()
         {
             return "Enter your user name:\n";

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MooSpel
 {
-    interface IUI
+    public interface IUI
     {
         void PutString(string s);
         string GetString();

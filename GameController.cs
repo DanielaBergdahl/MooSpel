@@ -2,7 +2,7 @@
 
 namespace MooSpel
 {
-    internal class GameController
+    public class GameController
     //Skickar sakerna mellan klasserna
     {
         private Game _game;
@@ -22,19 +22,10 @@ namespace MooSpel
             do
             {
                 SetUpNewGame();
-                string resultOfGuesses = "";
-                int numberOfGuesses = 0; 
-                do
-                {
-                    userInput = _ui.GetString().Trim();
-                    numberOfGuesses++;
-                    resultOfGuesses = _game.CheckIfBullsOrCows(_game.GoalDigits, userInput);
-                    _ui.PutString(resultOfGuesses);
-                } while (resultOfGuesses != "BBBB,");
-
-                _topList.Update(numberOfGuesses, _game.UserName);
+                RunGuessingRound();
+                _topList.Update(_game.NumberOfGuesses, _game.UserName);
                 _topList.Show();
-                _ui.PutString("Correct, it took " + numberOfGuesses + " guesses\nContinue?");
+                _ui.PutString("Correct, it took " + _game.NumberOfGuesses + " guesses\nContinue?");
                 userInput = _ui.GetString().Trim();
             } while (userInput.ToLower() != "n");
             
@@ -47,8 +38,19 @@ namespace MooSpel
         }
         private void SetUpNewGame()
         {
+            _game.NumberOfGuesses = 0;
             _game.MakeGoalDigits();
             _ui.PutString(_game.GetStartNewGameMessage());
+        }
+
+        public void RunGuessingRound() 
+        {
+            do
+            {
+                _game.NumberOfGuesses++;
+                _game.ResultOfGuesses = _game.CheckIfBullsOrCows(_game.GoalDigits, _ui.GetString().Trim());
+                _ui.PutString(_game.ResultOfGuesses);
+            } while (_game.ResultOfGuesses != "BBBB,");
         }
 
         private void Handle(string input)
