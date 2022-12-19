@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             IUI ui = new IO();
-            Game game = new Game();
+            IGame game = new Game();
             TopList topList = new TopList();
             GameController controller = new GameController(game, ui, topList);
             controller.Run();

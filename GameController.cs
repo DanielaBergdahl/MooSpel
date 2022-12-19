@@ -1,14 +1,12 @@
-﻿using System.Xml.Linq;
-
-namespace MooSpel
+﻿namespace MooSpel
 {
     public class GameController
     {
-        private Game _game;
+        private IGame _game;
         private IUI _ui;
         private ITopList _topList;
 
-        public GameController(Game game, IUI ui, ITopList topList)
+        public GameController(IGame game, IUI ui, ITopList topList)
         {
             _game = game;
             _ui = ui;
@@ -39,7 +37,6 @@ namespace MooSpel
             _game.MakeGoalDigits();
             _ui.PutString("New game:\n\nFor practice, number is: " + _game.GoalDigits + "\n");
         }
-
         public void RunGuessingRound() 
         {
             do

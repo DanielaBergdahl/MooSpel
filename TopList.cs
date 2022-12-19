@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MooSpel
+﻿namespace MooSpel
 {
     internal class TopList : ITopList
     {
@@ -28,7 +22,7 @@ namespace MooSpel
 
 
                 Player player = new Player(nameOfPlayer, playerTotalGuesses);
-                int playerPosition = players.IndexOf(player); // EA: Hur kan det bli -1? Det blir det i alla fall.
+                int playerPosition = players.IndexOf(player); 
                 if (playerPosition < 0)
                 {
                     players.Add(player);
@@ -37,17 +31,14 @@ namespace MooSpel
                 {
                     players[playerPosition].Update(playerTotalGuesses);
                 }
-
-
             }
-            players.Sort((player1, p2) => player1.Average().CompareTo(p2.Average())); //EA: Här skapas väl en lista?..
-            Console.WriteLine("Player   games average");                                            //EA: Som skrivs ut här.
+            players.Sort((player1, player2) => player1.Average().CompareTo(player2.Average())); 
+            Console.WriteLine("Player   games average");                                            
             foreach (Player p in players)
             {
                 Console.WriteLine(string.Format("{0,-9}{1,5:D}{2,9:F2}", p.Name, p.AmountOfGames, p.Average()));
             }
             scoreStatisticsInput.Close();
         }
-
     }
 }

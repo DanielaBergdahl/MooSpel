@@ -4,6 +4,5 @@
     {
         public void Update(int numberOfGuesses, string userName);
         public void Show();
-
     }
 }
