@@ -9,14 +9,6 @@ namespace MooSpel
         public int NumberOfGuesses { get; set; }
         public string ResultOfGuesses { get; set; }
 
-        public string AskForUserName()
-        {
-            return "Enter your user name:\n";
-        }
-        public string GetStartNewGameMessage()
-        {
-            return "New game:\n\nFor practice, number is: " + GoalDigits + "\n";
-        }
         public void MakeGoalDigits()
         {
             GoalDigits = "";

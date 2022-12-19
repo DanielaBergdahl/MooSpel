@@ -15,7 +15,7 @@ namespace MooSpel
             scoreStatisticsOutput.Close();
         }
 
-        public void Show() // EA:Ska nog vara en Make- OCH PrintTopList, dvs flera metoder.
+        public void Show()
         {
             StreamReader scoreStatisticsInput = new StreamReader("result.txt");
             List<Player> players = new List<Player>();

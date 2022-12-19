@@ -9,25 +9,25 @@ namespace MooSpel
     public class Player
     {
         public string Name { get; private set; }
-        public int AmountOfGames { get; private set; } // EA: Ändrat namnet till AmountOfGames 
-        int totalGuess;
+        public int AmountOfGames { get; private set; } 
+        public int totalGuess;
 
 
         public Player(string name, int guesses)
         {
             this.Name = name;
-            AmountOfGames = 1; //EA: Varför är den satt till 1?
+            AmountOfGames = 1;
             totalGuess = guesses;
         }
 
-        public void Update(int guesses)                 //Har en (1) references
-        {                                               // TODO - Hitta bra namn på metoden
+        public void Update(int guesses)                
+        {                                               
             totalGuess += guesses;
             AmountOfGames++;
         }
 
-        public double Average()                         //Har tre references
-        {                                               // TODO - Hitta bra namn på metoden
+        public double Average()                         
+        {                                               
             return (double)totalGuess / AmountOfGames;
         }
     }
